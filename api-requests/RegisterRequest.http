@@ -2,6 +2,6 @@ POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
-  "username": "testuser",
-  "password": "password123"
+  "username": "testuser3",
+  "password": "test"
 }

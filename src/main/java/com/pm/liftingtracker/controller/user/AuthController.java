@@ -2,6 +2,7 @@ package com.pm.liftingtracker.controller.user;
 
 import com.pm.liftingtracker.model.user.User;
 import com.pm.liftingtracker.repository.user.UserRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
+    public String register(@RequestBody @Valid User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             return "Username already taken";
         }
