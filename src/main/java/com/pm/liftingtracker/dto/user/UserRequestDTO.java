@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class UserRequestDTO {
 
     @NotBlank(message = "username of the user cannot be empty")
