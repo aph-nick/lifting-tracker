@@ -4,9 +4,13 @@ import com.pm.liftingtracker.util.Estimated1RMCalculator;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Exercise {
     @Id
@@ -23,32 +27,7 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ExerciseSet> sets;
 
-
-    private double estimated1RM; // util package will calculate this value
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private double estimated1RM;
 
     public double getEstimated1RM() {
         if (sets == null || sets.isEmpty()) {
@@ -56,17 +35,4 @@ public class Exercise {
         }
         return Estimated1RMCalculator.calculateEstimated1RM(this);
     }
-
-    public void setEstimaed1RM(double estimated1RM) {
-        this.estimated1RM = estimated1RM;
-    }
-
-    public List<ExerciseSet> getSets() {
-        return sets;
-    }
-
-    public void setSets(List<ExerciseSet> sets) {
-        this.sets = sets;
-    }
-
 }

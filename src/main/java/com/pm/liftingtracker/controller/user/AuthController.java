@@ -25,10 +25,12 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "User registered successfully";
+
+        // To Do implement DTO password check
     }
 
     @PostMapping("/login")
     public String login() {
-        return "Login endpoint (use Basic Auth headers)";
+        return "To Do";
     }
 }
