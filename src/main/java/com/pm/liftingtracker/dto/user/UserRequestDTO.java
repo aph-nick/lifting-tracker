@@ -3,7 +3,11 @@ package com.pm.liftingtracker.dto.user;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class UserRequestDTO {
 
     @NotBlank(message = "username of the user cannot be empty")
