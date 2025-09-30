@@ -5,13 +5,41 @@ import com.pm.liftingtracker.mapper.Mapper;
 import com.pm.liftingtracker.model.workout.Exercise;
 
 public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
+
+    private final ExerciseSetMapper exerciseSetMapper;
+
+    public ExerciseMapper(ExerciseSetMapper exerciseSetMapper) {
+        this.exerciseSetMapper = exerciseSetMapper;
+    }
+
     @Override
     public ExerciseResponseDTO toDto(Exercise exercise) {
-        return null;
+        ExerciseResponseDTO dto = new ExerciseResponseDTO();
+
+        dto.setId(exercise.getId());
+        dto.setName(exercise.getName());
+        dto.setDescription(exercise.getDescription());
+        dto.setSets(exercise.getSets().stream()
+                .map(exerciseSetMapper::toDto)
+                .toList()
+        );
+
+        return dto;
     }
 
     @Override
     public Exercise toModel(ExerciseResponseDTO exerciseResponseDTO) {
-        return null;
+        Exercise exercise = new Exercise();
+
+        exercise.setId(exerciseResponseDTO.getId());
+        exercise.setName(exerciseResponseDTO.getName());
+        exercise.setDescription(exerciseResponseDTO.getDescription());
+        exercise.setName(exerciseResponseDTO.getName());
+        exercise.setSets(exerciseResponseDTO.getSets().stream()
+                .map(exerciseSetMapper::toModel)
+                .toList()
+        );
+
+        return exercise;
     }
 }
