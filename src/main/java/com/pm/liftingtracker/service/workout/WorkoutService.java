@@ -2,6 +2,7 @@ package com.pm.liftingtracker.service.workout;
 
 import com.pm.liftingtracker.dto.workout.WorkoutRequestDTO;
 import com.pm.liftingtracker.dto.workout.WorkoutResponseDTO;
+import com.pm.liftingtracker.exception.WorkoutNotFoundException;
 import com.pm.liftingtracker.mapper.workout.WorkoutMapper;
 import com.pm.liftingtracker.model.workout.Workout;
 import com.pm.liftingtracker.repository.workout.WorkoutRepository;
@@ -34,4 +35,20 @@ public class WorkoutService {
         return workoutMapper.toDto(workout);
     }
 
+    public WorkoutResponseDTO updateWorkout(Integer id, WorkoutRequestDTO workoutRequestDTO) {
+        Workout workout = workoutRepository.findById(id).orElseThrow(
+                () -> new WorkoutNotFoundException("Workout not found with id: " + id)
+        );
+
+        workout.setName(workoutRequestDTO.getName());
+        workoutRepository.save(workout);
+
+        return workoutMapper.toDto(workout);
+    }
+
+    public  void deleteWorkout(Integer id) {
+        workoutRepository.deleteById(id);
+    }
+
+    //TO DO add helper methods for exercise/set services
 }
