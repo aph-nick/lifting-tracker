@@ -15,7 +15,6 @@ import java.util.List;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Integer id;
 
     @NotEmpty
@@ -23,16 +22,4 @@ public class Exercise {
 
     @NotEmpty
     private String description;
-
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ExerciseSet> sets;
-
-    private double estimated1RM;
-
-    public double getEstimated1RM() {
-        if (sets == null || sets.isEmpty()) {
-            return 0.0;
-        }
-        return Estimated1RMCalculator.calculateEstimated1RM(this);
-    }
 }

@@ -28,5 +28,10 @@ public class ExerciseSet {
     @ManyToOne
     @JoinColumn(name = "exercise_id", nullable = false)
     private Exercise exercise;
+
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "workout_id", nullable = false)
+    private Workout workout;
 }
 

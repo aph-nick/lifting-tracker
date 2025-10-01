@@ -30,13 +30,8 @@ public class Workout {
     private LocalDate date;
 
     @Setter
-    @ManyToMany
-    @JoinTable(
-            name = "workout_exercises",
-            joinColumns = @JoinColumn(name = "workout_id"),
-            inverseJoinColumns = @JoinColumn(name = "exercise_id")
-    )
-    private List<Exercise> exercises;
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExerciseSet> sets;
 
     @NotNull
     private Time startTime;
