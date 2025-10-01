@@ -45,14 +45,12 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration,
-            // Upewnij się, że wstrzykujesz PasswordEncoder z beana
             PasswordEncoder passwordEncoder) throws Exception {
 
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder); // Użycie wstrzykniętego beana
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
 
-        // Ważne: Zwracasz ProviderManager, który używa poprawnie skonfigurowanego providera
         return new ProviderManager(authenticationProvider);
     }
 
