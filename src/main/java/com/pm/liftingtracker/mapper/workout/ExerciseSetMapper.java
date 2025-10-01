@@ -1,10 +1,12 @@
 package com.pm.liftingtracker.mapper.workout;
 
+import com.pm.liftingtracker.dto.workout.ExerciseSetRequestDTO;
 import com.pm.liftingtracker.dto.workout.ExerciseSetResponseDTO;
-import com.pm.liftingtracker.mapper.Mapper;
 import com.pm.liftingtracker.model.workout.ExerciseSet;
+import org.springframework.stereotype.Component;
 
-public class ExerciseSetMapper implements Mapper<ExerciseSetResponseDTO, ExerciseSet> {
+@Component
+public class ExerciseSetMapper {
 
     private final ExerciseMapper exerciseMapper;
 
@@ -12,7 +14,6 @@ public class ExerciseSetMapper implements Mapper<ExerciseSetResponseDTO, Exercis
         this.exerciseMapper = exerciseMapper;
     }
 
-    @Override
     public ExerciseSetResponseDTO toDto(ExerciseSet exerciseSet) {
         ExerciseSetResponseDTO dto = new ExerciseSetResponseDTO();
         dto.setId(exerciseSet.getId());
@@ -23,12 +24,10 @@ public class ExerciseSetMapper implements Mapper<ExerciseSetResponseDTO, Exercis
         return dto;
     }
 
-    @Override
-    public ExerciseSet toModel(ExerciseSetResponseDTO dto) {
+    public ExerciseSet toModel(ExerciseSetRequestDTO dto) {
         ExerciseSet exerciseSet = new ExerciseSet();
         exerciseSet.setLoad(dto.getLoad());
         exerciseSet.setRepetitions(dto.getRepetitions());
-        exerciseSet.setExercise(exerciseMapper.toModel(dto.getExercise()));
 
         return exerciseSet;
     }

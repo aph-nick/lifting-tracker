@@ -1,11 +1,13 @@
 package com.pm.liftingtracker.mapper.user;
 
+import com.pm.liftingtracker.dto.user.UserRequestDTO;
 import com.pm.liftingtracker.dto.user.UserResponseDTO;
-import com.pm.liftingtracker.mapper.Mapper;
 import com.pm.liftingtracker.mapper.workout.WorkoutMapper;
 import com.pm.liftingtracker.model.user.User;
+import org.springframework.stereotype.Component;
 
-public class UserMapper implements Mapper<UserResponseDTO, User> {
+@Component
+public class UserMapper {
 
     private final WorkoutMapper workoutMapper;
 
@@ -13,7 +15,6 @@ public class UserMapper implements Mapper<UserResponseDTO, User> {
         this.workoutMapper = workoutMapper;
     }
 
-    @Override
     public UserResponseDTO toDto(User user) {
         UserResponseDTO dto = new UserResponseDTO();
 
@@ -26,14 +27,11 @@ public class UserMapper implements Mapper<UserResponseDTO, User> {
         return dto;
     }
 
-    @Override
-    public User toModel(UserResponseDTO dto) {
+    public User toModel(UserRequestDTO dto) {
         User user = new User();
 
         user.setUsername(dto.getUsername());
-        user.setWorkouts(dto.getWorkouts().stream()
-                .map(workoutMapper::toModel)
-                .toList());
+        user.setPassword(dto.getPassword());
 
         return user;
     }

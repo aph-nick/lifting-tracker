@@ -1,12 +1,14 @@
 package com.pm.liftingtracker.mapper.workout;
 
+import com.pm.liftingtracker.dto.workout.ExerciseRequestDTO;
 import com.pm.liftingtracker.dto.workout.ExerciseResponseDTO;
-import com.pm.liftingtracker.mapper.Mapper;
 import com.pm.liftingtracker.model.workout.Exercise;
+import jdk.jfr.Category;
+import org.springframework.stereotype.Component;
 
-public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
+@Component
+public class ExerciseMapper {
 
-    @Override
     public ExerciseResponseDTO toDto(Exercise exercise) {
         ExerciseResponseDTO dto = new ExerciseResponseDTO();
 
@@ -17,14 +19,11 @@ public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
         return dto;
     }
 
-    @Override
-    public Exercise toModel(ExerciseResponseDTO exerciseResponseDTO) {
+    public Exercise toModel(ExerciseRequestDTO exerciseRequestDTO) {
         Exercise exercise = new Exercise();
 
-        exercise.setId(exerciseResponseDTO.getId());
-        exercise.setName(exerciseResponseDTO.getName());
-        exercise.setDescription(exerciseResponseDTO.getDescription());
-        exercise.setName(exerciseResponseDTO.getName());
+        exercise.setName(exerciseRequestDTO.getName());
+        exercise.setDescription(exerciseRequestDTO.getDescription());
 
         return exercise;
     }
