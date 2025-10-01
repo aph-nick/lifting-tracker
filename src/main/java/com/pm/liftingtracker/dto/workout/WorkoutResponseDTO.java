@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 public class WorkoutResponseDTO {
     private String name;
-    private List<ExerciseResponseDTO> exercises;
+    private List<ExerciseSetResponseDTO> exerciseSets;
 }

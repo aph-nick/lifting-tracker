@@ -12,5 +12,4 @@ public class ExerciseResponseDTO {
     private Integer id;
     private String name;
     private String description;
-    private List<ExerciseSetResponseDTO> sets;
 }
