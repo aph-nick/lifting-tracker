@@ -15,7 +15,6 @@ public class ExerciseSetMapper implements Mapper<ExerciseSetResponseDTO, Exercis
     @Override
     public ExerciseSetResponseDTO toDto(ExerciseSet exerciseSet) {
         ExerciseSetResponseDTO dto = new ExerciseSetResponseDTO();
-
         dto.setId(exerciseSet.getId());
         dto.setLoad(exerciseSet.getLoad());
         dto.setRepetitions(exerciseSet.getRepetitions());
@@ -25,12 +24,11 @@ public class ExerciseSetMapper implements Mapper<ExerciseSetResponseDTO, Exercis
     }
 
     @Override
-    public ExerciseSet toModel(ExerciseSetResponseDTO exerciseSetResponseDTO) {
+    public ExerciseSet toModel(ExerciseSetResponseDTO dto) {
         ExerciseSet exerciseSet = new ExerciseSet();
-
-        exerciseSet.setLoad(exerciseSetResponseDTO.getLoad());
-        exerciseSet.setRepetitions(exerciseSetResponseDTO.getRepetitions());
-        exerciseSet.setExercise(exerciseMapper.toModel(exerciseSetResponseDTO.getExercise()));
+        exerciseSet.setLoad(dto.getLoad());
+        exerciseSet.setRepetitions(dto.getRepetitions());
+        exerciseSet.setExercise(exerciseMapper.toModel(dto.getExercise()));
 
         return exerciseSet;
     }

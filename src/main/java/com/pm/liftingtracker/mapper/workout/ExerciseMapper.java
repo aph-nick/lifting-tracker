@@ -6,12 +6,6 @@ import com.pm.liftingtracker.model.workout.Exercise;
 
 public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
 
-    private final ExerciseSetMapper exerciseSetMapper;
-
-    public ExerciseMapper(ExerciseSetMapper exerciseSetMapper) {
-        this.exerciseSetMapper = exerciseSetMapper;
-    }
-
     @Override
     public ExerciseResponseDTO toDto(Exercise exercise) {
         ExerciseResponseDTO dto = new ExerciseResponseDTO();
@@ -19,10 +13,6 @@ public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
         dto.setId(exercise.getId());
         dto.setName(exercise.getName());
         dto.setDescription(exercise.getDescription());
-        dto.setSets(exercise.getSets().stream()
-                .map(exerciseSetMapper::toDto)
-                .toList()
-        );
 
         return dto;
     }
@@ -35,10 +25,6 @@ public class ExerciseMapper implements Mapper<ExerciseResponseDTO, Exercise> {
         exercise.setName(exerciseResponseDTO.getName());
         exercise.setDescription(exerciseResponseDTO.getDescription());
         exercise.setName(exerciseResponseDTO.getName());
-        exercise.setSets(exerciseResponseDTO.getSets().stream()
-                .map(exerciseSetMapper::toModel)
-                .toList()
-        );
 
         return exercise;
     }

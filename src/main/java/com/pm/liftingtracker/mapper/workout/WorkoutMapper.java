@@ -2,14 +2,15 @@ package com.pm.liftingtracker.mapper.workout;
 
 import com.pm.liftingtracker.dto.workout.WorkoutResponseDTO;
 import com.pm.liftingtracker.mapper.Mapper;
+import com.pm.liftingtracker.model.workout.ExerciseSet;
 import com.pm.liftingtracker.model.workout.Workout;
 
 public class WorkoutMapper implements Mapper<WorkoutResponseDTO, Workout> {
 
-    private final ExerciseMapper exerciseMapper;
+    private final ExerciseSetMapper exerciseSetMapper;
 
-    public WorkoutMapper(ExerciseMapper exerciseMapper) {
-        this.exerciseMapper = exerciseMapper;
+    public WorkoutMapper(ExerciseSetMapper exerciseSetMapper) {
+        this.exerciseSetMapper = exerciseSetMapper;
     }
 
     @Override
@@ -17,8 +18,8 @@ public class WorkoutMapper implements Mapper<WorkoutResponseDTO, Workout> {
         WorkoutResponseDTO dto = new WorkoutResponseDTO();
 
         dto.setName(workout.getName());
-        dto.setExercises(workout.getExercises().stream()
-                .map(exerciseMapper::toDto)
+        dto.setExerciseSets(workout.getSets().stream()
+                .map(exerciseSetMapper::toDto)
                 .toList());
 
         return dto;
@@ -29,8 +30,8 @@ public class WorkoutMapper implements Mapper<WorkoutResponseDTO, Workout> {
         Workout workout = new Workout();
 
         workout.setName(workoutResponseDTO.getName());
-        workout.setExercises(workoutResponseDTO.getExercises().stream()
-                .map(exerciseMapper::toModel)
+        workout.setSets(workoutResponseDTO.getExerciseSets().stream()
+                .map(exerciseSetMapper::toModel)
                 .toList());
 
         return workout;
