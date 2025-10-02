@@ -1,6 +1,5 @@
 package com.pm.liftingtracker.service.workout;
 
-import com.pm.liftingtracker.dto.workout.ExerciseRequestDTO;
 import com.pm.liftingtracker.dto.workout.ExerciseSetRequestDTO;
 import com.pm.liftingtracker.dto.workout.WorkoutRequestDTO;
 import com.pm.liftingtracker.dto.workout.WorkoutResponseDTO;
@@ -17,7 +16,6 @@ import com.pm.liftingtracker.repository.workout.WorkoutRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
