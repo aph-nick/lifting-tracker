@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -30,12 +32,12 @@ public class Workout {
     private LocalDate date;
 
     @Setter
-    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExerciseSet> sets;
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+    private List<ExerciseSet> sets = new ArrayList<>();
 
-    @NotNull
+    @Setter
     private Time startTime;
 
-    @NotNull
+    @Setter
     private Time endTime;
 }

@@ -16,6 +16,9 @@ import com.pm.liftingtracker.repository.workout.WorkoutRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -52,9 +55,13 @@ public class WorkoutService {
 
     @Transactional
     public WorkoutResponseDTO createWorkout(WorkoutRequestDTO workoutRequestDTO) {
-        Workout workout = workoutRepository.save(
-                workoutMapper.toModel(workoutRequestDTO)
-        );
+        Workout workout = workoutMapper.toModel(workoutRequestDTO);
+
+        LocalTime now = LocalTime.now();
+        workout.setStartTime(Time.valueOf(now));
+        workout.setEndTime(Time.valueOf(now.plusHours(1)));
+
+        workout = workoutRepository.save(workout);
         return workoutMapper.toDto(workout);
     }
 
