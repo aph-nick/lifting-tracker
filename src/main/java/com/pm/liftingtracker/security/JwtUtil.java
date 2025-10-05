@@ -1,20 +1,22 @@
 package com.pm.liftingtracker.security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
 
-    private final String secretKey;
+    private final Key secretKey;
     private final long expirationMs;
 
-    public JwtUtil(@Value("${jwt.secret}") String secretKey,
+    public JwtUtil(@Value("${jwt.secret}") String secret,
                    @Value("${jwt.expiration-ms}") long expirationMs) {
-        this.secretKey = secretKey;
+        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
         this.expirationMs = expirationMs;
     }
 

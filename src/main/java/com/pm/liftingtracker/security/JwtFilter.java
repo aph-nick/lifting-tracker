@@ -38,7 +38,13 @@ public class JwtFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken auth =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
+                auth.setDetails(new org.springframework.security.web.authentication.WebAuthenticationDetailsSource()
+                        .buildDetails(request));
+
                 SecurityContextHolder.getContext().setAuthentication(auth);
+
+                System.out.println("Auth header: " + request.getHeader("Authorization"));
+                System.out.println("JWT valid: " + jwtUtil.validateToken(auth.toString()));
             }
         }
 
