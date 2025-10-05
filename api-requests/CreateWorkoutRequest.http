@@ -1,0 +1,7 @@
+POST http://localhost:8080/workouts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjgiLCJpYXQiOjE3NTk2NzcwNDQsImV4cCI6MTc1OTY4MDY0NH0.xZjDMuWcaYNdquK9y7NXbpHa0JUB4FKJRh7NaXc-JZI
+
+{
+  "name": "W1D1"
+}
