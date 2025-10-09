@@ -1,0 +1,10 @@
+POST http://localhost:8080/exercises
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjgiLCJpYXQiOjE3NjAwMjA1ODMsImV4cCI6MTc2MDAyNDE4M30.5pya_Wb4xYgR5VaywiqnEDghj6ypIlbFhFmNIt_bxsQ
+
+
+
+{
+  "name": "Barbell Bench Press",
+  "description": "Chest focused exercise where a person pushes the bar off their chest lying down on a bench"
+}
