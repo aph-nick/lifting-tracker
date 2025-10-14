@@ -1,7 +1,6 @@
 POST http://localhost:8080/exercises
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjgiLCJpYXQiOjE3NjAwMjA1ODMsImV4cCI6MTc2MDAyNDE4M30.5pya_Wb4xYgR5VaywiqnEDghj6ypIlbFhFmNIt_bxsQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjgiLCJpYXQiOjE3NjAxODExNTAsImV4cCI6MTc2MDE4NDc1MH0.nbDB0Moysp4IlX3RfdS9yC8fFrDk815pDffTQ-hWjto
 
 
 {
