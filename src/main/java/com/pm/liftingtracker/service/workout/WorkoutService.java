@@ -17,8 +17,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Service
@@ -57,9 +60,29 @@ public class WorkoutService {
     public WorkoutResponseDTO createWorkout(WorkoutRequestDTO workoutRequestDTO) {
         Workout workout = workoutMapper.toModel(workoutRequestDTO);
 
-        LocalTime now = LocalTime.now();
-        workout.setStartTime(Time.valueOf(now));
-        workout.setEndTime(Time.valueOf(now.plusHours(1)));
+        if (workoutRequestDTO.getStartTime() != null) {
+            try {
+                Instant instant = Instant.parse(workoutRequestDTO.getStartTime());
+
+                LocalDateTime startTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+                workout.setStartTime(startTime);
+            } catch (DateTimeParseException e) {
+                System.err.println("Błąd parsowania startTime: " + e.getMessage());
+            }
+        }
+
+        if (workoutRequestDTO.getEndTime() != null) {
+            try {
+                Instant instant = Instant.parse(workoutRequestDTO.getEndTime());
+                LocalDateTime endTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+                workout.setEndTime(endTime);
+            } catch (DateTimeParseException e) {
+                System.err.println("Błąd parsowania endTime: " + e.getMessage());
+            }
+        }
+
 
         workout = workoutRepository.save(workout);
         return workoutMapper.toDto(workout);
