@@ -4,6 +4,7 @@ import com.pm.liftingtracker.model.workout.Exercise;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
 import java.util.List;
 
 @Getter
@@ -11,4 +12,6 @@ import java.util.List;
 public class WorkoutResponseDTO {
     private String name;
     private List<ExerciseSetResponseDTO> exerciseSets;
+    private String startTime;
+    private String endTime;
 }
