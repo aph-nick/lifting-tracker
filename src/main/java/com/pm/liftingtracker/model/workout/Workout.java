@@ -36,8 +36,8 @@ public class Workout {
     private List<ExerciseSet> sets = new ArrayList<>();
 
     @Setter
-    private Time startTime;
+    private LocalDateTime startTime;
 
     @Setter
-    private Time endTime;
+    private LocalDateTime endTime;
 }
