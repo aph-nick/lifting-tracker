@@ -20,7 +20,7 @@ Built with **Java** and **Spring Boot**, it allows users to:
 -   🌱 **Spring Boot**\
 -   🐘 **PostgreSQL**\
 -   🌐 **REST API** (ready to integrate with frontend)
-
+-   🌐 **Swagger Open-API** easily generate API docs.
 ------------------------------------------------------------------------
 
 ## 🚀 Features (REST API)
